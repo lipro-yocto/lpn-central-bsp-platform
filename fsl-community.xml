@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+  <default sync-j="4" revision="master"/>
+
+  <remote fetch="https://git.yoctoproject.org/git" name="yocto"/>
+  <remote fetch="https://github.com/Freescale" name="freescale"/>
+  <remote fetch="https://github.com/openembedded" name="oe"/>
+  <remote fetch="https://github.com/meta-qt5" name="qt5"/>
+  <remote fetch="https://github.com/lipro-yocto" name="lpn"/>
+
+  <project remote="yocto" name="poky" path="sources/poky"/>
+  <project remote="yocto" name="meta-fsl-arm" path="sources/meta-fsl-arm"/>
+  <project remote="yocto" name="meta-fsl-ppc" path="sources/meta-fsl-ppc"/>
+
+  <project remote="oe" name="meta-openembedded" path="sources/meta-openembedded"/>
+
+  <project remote="qt5" name="meta-qt5" path="sources/meta-qt5" />
+
+  <project remote="freescale" name="meta-fsl-arm-extra" path="sources/meta-fsl-arm-extra"/>
+  <project remote="freescale" name="meta-fsl-demos" path="sources/meta-fsl-demos"/>
+  <project remote="freescale" name="Documentation" path="documentation/fsl-community-bsp"/>
+
+  <project remote="lpn" name="lpn-central-bsp-platform" path="platform/base"/>
+  <project remote="lpn" name="lpn-central-bsp-base" path="sources/base" revision="fsl-community/master">
+	<copyfile dest="README.adoc" src="README.adoc"/>
+	<copyfile dest="setup-environment" src="setup-environment"/>
+  </project>
+
+</manifest>
