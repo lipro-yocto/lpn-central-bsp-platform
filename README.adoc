@@ -1,0 +1,132 @@
+= LPN Central Yocto BSP
+
+This is the Li-Pro.Net Central Yocto BSP Manifest.
+
+== Quick Start
+
+To get the BSP you need to have `repo` installed and use it as:
+
+Install the `repo` utility:
+
+[source,console]
+$: mkdir ~/bin
+$: curl https://raw.githubusercontent.com/lipro-yocto/git-repo/lpn-launcher/repo > ~/bin/repo
+$: chmod a+x ~/bin/repo
+
+For *version 2.0*, the SHA-1 checksum for `repo` is *1b4bc3c1093cd47bc9d24528cc05833e1296ae45*
+
+=== Freescale Official Release Yocto BSP
+
+[WARNING]
+.Derived Work
+This BSP is a special fork of the Freescale Official Release Yocto BSP. +
+Use the https://github.com/lipro-yocto/lpn-central-bsp-platform/issues[issue tracker on GitHub].
+Do not ask on any mailing list.
+
+Download the BSP source:
+
+[source,console]
+$: PATH=${PATH}:~/bin
+$: mkdir lpn-central-bsp
+$: cd lpn-central-bsp
+$: repo init -u https://github.com/lipro-yocto/lpn-central-bsp-platform \
+             -b fsl-release/imx-3.14.52-1.1.0_ga -m default.xml
+$: repo sync
+
+At the end of the commands you have every metadata you need to start work with.
+
+=== Build Stage
+
+Setup and Build for X11
+
+[source,console]
+$: DISTRO=fsl-imx-x11 MACHINE=<machine name> source fsl-setup-release.sh -b build-x11
+
+Build without QT
+
+[source,console]
+$: bitbake fsl-image-gui
+
+Build with QT5 for X11, FB and Wayland and Xwayland
+
+[source,console]
+$: bitbake fsl-image-qt5
+
+Setup and Build for FB
+
+[source,console]
+$: DISTRO=fsl-imx-fb MACHINE=<machine name> source fsl-setup-release.sh -b build-fb
+
+Setup and Build for XWayland - use DISTRO=fsl-imx-wayland for just wayland
+
+[source,console]
+$: DISTRO=fsl-imx-xwayland MACHINE=<machine name> source fsl-setup-release.sh -b build-xwayland
+
+== Contributing
+
+To contribute to the manifest you should send a pull request to this GitHub
+project or send the patches for review to the authors mailing address.
+
+Issue tracker::
+    https://github.com/lipro-yocto/lpn-central-bsp-platform/issues
+
+Pull requests::
+    https://github.com/lipro-yocto/lpn-central-bsp-platform/pulls
+
+Source code::
+    https://github.com/lipro-yocto/lpn-central-bsp-platform
+
+When creating patches, please use something like:
+
+[source,console]
+$: git format-patch -s --subject-prefix='lpn-central-bsp-platform][PATCH' origin
+
+When sending patches, please use something like:
+
+[source,console]
+$: git send-email --to rexut@users.noreply.github.com <generated patch>
+
+== Freescale Community versus Release Yocto BSP
+
+[quote, Otavio Salvador, https://community.freescale.com/message/409716#409716]
+____
+The goal of both projects are different.
+
+The Freescale Official Release BSP is intended to provide a static base for
+Freescale to test and validate the BSP modules in the Freescale evaluation
+boards and it is developed internally by Freescale. The set of supported
+boards vary from release to release and is listed in the Release Notes for
+the respective version. The code points
+footnoteref:[1,http://git.freescale.com/git/cgit.cgi/imx/fsl-arm-yocto-bsp.git/tree/default.xml?h=imx-3.14.52-1.1.0_ga]
+to a static revision of every included layer so after release it does not
+receive updates and bugfixes.
+
+The FSL Community BSP is a reference system that can be used as a base for
+products and is an open project that accepts contribution from the community.
+It supports a wide range of board which goes from Freescale evaluation boards
+(meta-fsl-arm layer) and 3rd party board (meta-fsl-arm-extra). The code is a
+"moving target" so there are updates on top of the source code released, such
+as addition of new features and inclusion of bug fixes.
+
+To summarise please see the table below:
+
+[cols=">1s,2,2"]
+|===
+|            s|Freescale Official Release BSP s|FSL Community BSP
+|Intended use |Reference system for BSP modules test and validation on
+               Freescale Reference Boards. +
+              |Reference system for use as base for any project for all
+               supported board.
+|Code         |Static, does not include bug fixes. +
+              |Updates, receive bugfixes and has security issues fixed often.
+|Contribution |Not possible, developped internally by Freescale. +
+              |Open, everyone is welcome to contribute in the project.
+|Board support|Limited, as it supports just the Freescale evaluation boards
+               listed in the Release Notes. +
+              |Extended, as it supports both Freescale evaluation board and
+               3rd party board. Currently supports 39 board.
+|Yocto Project +
+ Compatible .^|No .^|Yes
+|Support      |i.MX Community|meta-freescale@lists.yoctoproject.org
+|===
+____
