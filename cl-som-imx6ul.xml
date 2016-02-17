@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+  <default sync-j="4"/>
+
+  <remote fetch="git://git.freescale.com/imx" name="fsl-release" />
+  <remote fetch="https://git.yoctoproject.org/git" name="yocto"/>
+  <remote fetch="https://github.com/Freescale" name="freescale"/>
+  <remote fetch="https://github.com/openembedded" name="oe"/>
+  <remote fetch="https://github.com/OSSystems" name="ossys"/>
+  <remote fetch="https://github.com/meta-qt5" name="qt5"/>
+  <remote fetch="https://github.com/lipro-yocto" name="lpn"/>
+
+  <project remote="yocto" name="poky" path="sources/poky" revision="83aa565d93aacae484976562ef1ae8dbbb6b2bc0"/>
+  <project remote="yocto" name="meta-fsl-arm" path="sources/meta-fsl-arm" revision="c5326c90d6754c8630504ae29244907b0841c3a9"/>
+
+  <project remote="oe" name="meta-openembedded" path="sources/meta-openembedded" revision="10d3c8f85280a0bf867a8e4f84bcda81c290d28e"/>
+
+  <project remote="ossys" name="meta-browser" path="sources/meta-browser" revision="4b27058a8275a5310161459c9bb8f4c52a77762c"/>
+
+  <project remote="qt5" name="meta-qt5" path="sources/meta-qt5" revision="fc026381545650e10fdd488d5b2a3b2d78f87793"/>
+
+  <project remote="lpn" name="meta-fsl-arm-extra" path="sources/meta-fsl-arm-extra" revision="cl-som-imx6ul"/>
+  <project remote="freescale" name="meta-fsl-demos" path="sources/meta-fsl-demos" revision="836bdf5a9d500ed258f1ddc07d89eca74a704098"/>
+
+  <project remote="fsl-release" name="meta-fsl-bsp-release" path="sources/meta-fsl-bsp-release" revision="fido_3.14.38_6UL_ga" >
+	<copyfile dest="README" src="imx/README"/>
+	<copyfile dest="fsl-setup-release.sh" src="imx/tools/fsl-setup-release.sh"/>
+  </project>
+
+  <project remote="lpn" name="lpn-central-bsp-platform" path="platform/base" revision="fsl-release/imx-3.14.38-6UL_ga"/>
+  <project remote="lpn" name="lpn-central-bsp-base" path="sources/base" revision="fsl-release/fido">
+	<copyfile dest="README.adoc" src="README.adoc"/>
+	<copyfile dest="setup-environment" src="setup-environment"/>
+  </project>
+
+</manifest>
