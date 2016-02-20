@@ -10,6 +10,7 @@
   <remote fetch="https://github.com/lipro-yocto" name="lpn"/>
 
   <project remote="yocto" name="poky" path="sources/poky"/>
+  <project remote="yocto" name="meta-mingw" path="sources/meta-mingw"/>
   <project remote="yocto" name="meta-fsl-arm" path="sources/meta-fsl-arm"/>
   <project remote="yocto" name="meta-fsl-ppc" path="sources/meta-fsl-ppc"/>
 
