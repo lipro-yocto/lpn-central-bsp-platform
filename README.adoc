@@ -184,6 +184,58 @@ a standalone SDK.)
 Read more on https://community.freescale.com/docs/DOC-94849[Yocto Training]
 provided by the Freescale community.
 
+==== Yocto Toolchain Support
+
+To see available toolchains, run inside the checked out source path
+`lpn-central-bsp/sources`:
+
+[source,console]
+$: find . -name meta-toolchain*.bb
+./poky/meta/recipes-qt/meta/meta-toolchain-qte.bb
+./poky/meta/recipes-qt/meta/meta-toolchain-qt.bb
+./poky/meta/recipes-core/meta/meta-toolchain.bb
+./meta-qt5/recipes-qt/meta/meta-toolchain-qt5.bb
+./meta-openembedded/meta-efl/recipes-core/meta/meta-toolchain-efl.bb
+
+Those are all available toolchains. And note that, available toolchains from
+poky, meta-openembedded and meta-qt5 only. As you may imagine, several other
+layers can be included, and any new layer can provide new toolchains.
+
+.Toolchains Overview
+[cols="1s,3a,3a",frame="topbot",options="header"]
+|===
+|Meta Name|Formal Description|Use it when/for
+3+|meta-toolchain|
+  |Meta package for building a installable toolchain.
+  |* to have the crosscompiler installed on the developer machine
+   * to manually build boot loader and kernel
+3+|meta-toolchain-qt|
+2+|Meta package for building a installable Qt4 toolchain and SDK.
+3+|meta-toolchain-qte|
+2+|Meta package for building a installable Qt4/Embedded toolchain and SDK.
+3+|meta-toolchain-qt5|
+2+|Meta package for building a installable Qt5 toolchain and SDK.
+3+|meta-toolchain-efl|
+2+|Meta package for building a installable Enlightenment UI toolchain and SDK.
+|===
+
+To build a cross toolchain for the current build machine:
+
+[source,console]
+$: bitbake meta-toolchain
+
+To build a cross toolchain for a Windows 32 bit machine:
+
+[source,console]
+$: SDKMACHINE=i686-mingw32
+$: bitbake meta-toolchain
+
+To build a cross toolchain for a Windows 64 bit machine:
+
+[source,console]
+$: SDKMACHINE=x86_64-mingw32
+$: bitbake meta-toolchain
+
 == Contributing
 
 To contribute to the manifest you should send a pull request to this GitHub
