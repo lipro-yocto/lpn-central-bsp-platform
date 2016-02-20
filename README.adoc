@@ -61,6 +61,129 @@ You can use any directory to host your build.
 
 The source code is checked out at `lpn-central-bsp/sources`.
 
+==== Yocto Core Images
+
+To see available images, run inside the checked out source path
+`lpn-central-bsp/sources`:
+
+[source,console]
+$: find . -name core-image*.bb
+./poky/meta-skeleton/recipes-multilib/images/core-image-multilib-example.bb
+./poky/meta/recipes-graphics/images/core-image-clutter.bb
+./poky/meta/recipes-graphics/images/core-image-directfb.bb
+./poky/meta/recipes-graphics/images/core-image-x11.bb
+./poky/meta/recipes-graphics/images/core-image-weston.bb
+./poky/meta/recipes-extended/images/core-image-testmaster-initramfs.bb
+./poky/meta/recipes-extended/images/core-image-lsb.bb
+./poky/meta/recipes-extended/images/core-image-full-cmdline.bb
+./poky/meta/recipes-extended/images/core-image-lsb-dev.bb
+./poky/meta/recipes-extended/images/core-image-kernel-dev.bb
+./poky/meta/recipes-extended/images/core-image-testmaster.bb
+./poky/meta/recipes-extended/images/core-image-lsb-sdk.bb
+./poky/meta/recipes-core/images/core-image-minimal-dev.bb
+./poky/meta/recipes-core/images/core-image-minimal-mtdutils.bb
+./poky/meta/recipes-core/images/core-image-base.bb
+./poky/meta/recipes-core/images/core-image-minimal-initramfs.bb
+./poky/meta/recipes-core/images/core-image-minimal.bb
+./poky/meta/recipes-rt/images/core-image-rt.bb
+./poky/meta/recipes-rt/images/core-image-rt-sdk.bb
+./poky/meta/recipes-sato/images/core-image-sato-sdk.bb
+./poky/meta/recipes-sato/images/core-image-sato.bb
+./poky/meta/recipes-sato/images/core-image-sato-dev.bb
+./meta-openembedded/meta-xfce/recipes-core/images/core-image-minimal-xfce.bb
+
+Those are all available images. And note that, available core images from
+poky and meta-openembedded only. As you may imagine, several other layers
+can be included, and any new layer can provide new images.
+
+[quote, Daiane Angolini, https://community.freescale.com/docs/DOC-95421]
+____
+Yocto Project provides some "pre baked" images. In my point of view, those
+images are not to be used on your product. They are examples and quick
+starting points.
+
+An handy example: When you desire a pie, you can go to supermarket and buy
+a frozen chocolate pie. But when you're developing a pie to be the Apple
+Salted Caramel with Dark Chocolate Cinnamon Topping you need to decide every
+piece of this pie. What is the base, which type of apple to use. How much
+salt on caramel. This is your product, your pie, not a frozen standard pie.
+
+I know the analogy is kind of dumb. But it's important to understand that the
+"pre baked" images provided by Yocto Project are not supposed to become a
+product image! You can (and maybe should) base your image on some of those
+images, but they are not good enough to your product.
+
+I highly recommend you to have your own image file.
+____
+
+.Core Images Overview
+[cols="1s,3a,3a",frame="topbot",options="header"]
+|===
+|Image Name|Formal Description|Use it when/for
+3+|core-image-minimal|
+  |A small image just capable of allowing a device to boot.
+  |* testing machine support
+   * boot loader support/upgrade
+   * kernel support/upgrade
+3+|core-image-minimal-initramfs|
+2+|Small image capable of booting a device. The kernel includes the Minimal
+   RAM-based Initial Root Filesystem (initramfs), which finds the first 'init'
+   program more efficiently.
+3+|core-image-minimal-mtdutils|
+2+|Small image capable of booting a device with support for the Minimal MTD
+   Utilities, which let the user interact with the MTD subsystem in the kernel
+   to perform operations on flash devices.
+3+|core-image-base|
+  |A console-only image that fully supports the target device hardware.
+  |* need to add something like ssh/dropbear or evtest or usb utils
+   * always configure this on `local.conf` to add the desired package
+3+|core-image-full-cmdline|
+2+|A console-only image with more full-featured Linux system functionality
+   installed.
+3+|core-image-lsb|
+2+|An image containing packages that are required to conform to the Linux
+   Standard Base (LSB) specification.
+3+|core-image-rt|
+  |A small image just capable of allowing a device to boot plus a real-time
+   test suite and tools appropriate for real-time use.
+  |* testing real-time support
+3+|core-image-weston|
+  |A very basic Wayland image with a terminal.
+  |* debug Wayland GPU support
+3+|core-image-x11|
+  |A very basic X11 image with a terminal
+  |* need to test X11 accelerated by GPU
+   * need to have X11 for any test
+3+|core-image-directfb|
+  |An image that uses DirectFB instead of X11.
+  |* debug directfb GPU support
+3+|core-image-clutter|
+2+|An image with support for the Open GL-based toolkit Clutter, which enables
+   development of rich and animated graphical user interfaces.
+3+|core-image-sato|
+2+|Image with Sato, a mobile environment and visual style for mobile devices.
+   The image supports X11 with a Sato theme, Pimlico applications, and contains
+   terminal, editor, and file manager.
+3+|core-image-minimal-xfce|
+2+|A XFCE minimal demo image.
+|===
+
+All those images *DO NOT* include `-dev` packages or native build. If you want
+it you *MUST* configure your `local.conf`. Although, you can find special images
+that provides the header files or the native compiler.
+
+The images with *-dev* sufix include the header files (and development files)
+from all packages. For example: *core-image-minimal-dev* (A small image just
+capable of allowing a device to boot and is suitable for development work.)
+
+The images with *-sdk* sufix include the native build tools. For example
+*core-image-sato-sdk* (Image with Sato support that includes everything within
+core-image-sato plus meta-toolchain, development headers and libraries to form
+a standalone SDK.)
+
+Read more on https://community.freescale.com/docs/DOC-94849[Yocto Training]
+provided by the Freescale community.
+
 == Contributing
 
 To contribute to the manifest you should send a pull request to this GitHub
