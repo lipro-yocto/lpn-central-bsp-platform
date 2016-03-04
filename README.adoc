@@ -15,6 +15,26 @@ $: chmod a+x ~/bin/repo
 
 For *version 2.0*, the SHA-1 checksum for `repo` is *1b4bc3c1093cd47bc9d24528cc05833e1296ae45*
 
+=== Schnitzeltony's Yocto BSP
+
+[WARNING]
+.Derived Work
+This BSP is a special fork of most of all official Community Yocto BSP Repositories. +
+Use the https://github.com/lipro-yocto/lpn-central-bsp-platform/issues[issue tracker on GitHub].
+Do not ask on any mailing list.
+
+Download the BSP source:
+
+[source,console]
+$: PATH=${PATH}:~/bin
+$: mkdir lpn-central-bsp
+$: cd lpn-central-bsp
+$: repo init -u https://github.com/lipro-yocto/lpn-central-bsp-platform \
+             -b jethro -m schnitzeltony.xml
+$: repo sync
+
+At the end of the commands you have every metadata you need to start work with.
+
 === Freescale Community Yocto BSP
 
 [WARNING]

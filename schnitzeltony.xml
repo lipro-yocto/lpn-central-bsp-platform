@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+  <include name="fsl-community.xml"/>
+
+  <remote fetch="https://github.com/schnitzeltony" name="schnitzeltony"/>
+
+  <project remote="schnitzeltony" name="meta-angstrom" path="sources/meta-angstrom" revision="jethro+"/>
+
+  <remove-project name="meta-openembedded"/>
+  <project remote="schnitzeltony" name="meta-openembedded" path="sources/meta-openembedded" revision="jethro+"/>
+
+  <remove-project name="meta-qt5"/>
+  <project remote="schnitzeltony" name="meta-qt5" path="sources/meta-qt5" revision="jethro+"/>
+  <project remote="schnitzeltony" name="meta-qt5-extra" path="sources/meta-qt5-extra"/>
+
+  <project remote="schnitzeltony" name="meta-misc" path="sources/meta-misc"/>
+  <project remote="schnitzeltony" name="meta-browser" path="sources/meta-browser" revision="jethro+"/>
+  <project remote="schnitzeltony" name="meta-games" path="sources/meta-games" revision="jethro+"/>
+  <project remote="schnitzeltony" name="meta-office" path="sources/meta-office" revision="master"/>
+
+  <remove-project name="meta-fsl-arm"/>
+  <project remote="schnitzeltony" name="meta-fsl-arm" path="sources/meta-fsl-arm" revision="jethro+"/>
+
+  <remove-project name="lpn-central-bsp-base"/>
+  <project remote="lpn" name="lpn-central-bsp-base" path="sources/base" revision="schnitzeltony/jethro">
+	<copyfile dest="README.adoc" src="README.adoc"/>
+	<copyfile dest="setup-environment" src="setup-environment"/>
+	<!-- dragon is not yet supported by meta-qt5-extra in jethro branch -->
+	<copyfile dest="sources/meta-misc/recipes-image/packagegroups/packagegroup-image-full.bbappend"
+                  src="fixes/packagegroup-image-full.bbappend"/>
+  </project>
+
+</manifest>
