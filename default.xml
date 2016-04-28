@@ -9,6 +9,7 @@
   <remote fetch="https://github.com/openembedded" name="oe"/>
   <remote fetch="https://github.com/OSSystems" name="ossys"/>
   <remote fetch="https://github.com/meta-qt5" name="qt5"/>
+  <remote fetch="https://github.com/lipro-compulab" name="lpn-cl"/>
   <remote fetch="https://github.com/lipro-yocto" name="lpn"/>
 
   <project remote="yocto" name="poky" path="sources/poky" revision="83aa565d93aacae484976562ef1ae8dbbb6b2bc0"/>
@@ -27,6 +28,8 @@
 	<copyfile dest="README" src="imx/README"/>
 	<copyfile dest="fsl-setup-release.sh" src="imx/tools/fsl-setup-release.sh"/>
   </project>
+
+  <project remote="lpn-cl" name="meta-cl-arm-extra" path="sources/meta-cl-arm-extra" revision="99e528dcaec1cd16e93148c4d8592db2430be2c5"/>
 
   <project remote="lpn" name="lpn-central-bsp-platform" path="platform/base" revision="fsl-release/imx-3.14.38-6UL_ga"/>
   <project remote="lpn" name="lpn-central-bsp-base" path="sources/base" revision="fsl-release/fido">

@@ -9,6 +9,7 @@
   <remote fetch="https://github.com/openembedded" name="oe"/>
   <remote fetch="https://github.com/OSSystems" name="ossys"/>
   <remote fetch="https://github.com/meta-qt5" name="qt5"/>
+  <remote fetch="https://github.com/lipro-compulab" name="lpn-cl"/>
   <remote fetch="https://github.com/lipro-yocto" name="lpn"/>
 
   <project remote="yocto" name="poky" path="sources/poky" revision="83aa565d93aacae484976562ef1ae8dbbb6b2bc0"/>
@@ -20,13 +21,15 @@
 
   <project remote="qt5" name="meta-qt5" path="sources/meta-qt5" revision="fc026381545650e10fdd488d5b2a3b2d78f87793"/>
 
-  <project remote="lpn" name="meta-fsl-arm-extra" path="sources/meta-fsl-arm-extra" revision="cl-som-imx6ul"/>
+  <project remote="freescale" name="meta-fsl-arm-extra" path="sources/meta-fsl-arm-extra" revision="436b86e3421736216412bdbb21cd9cb08c758c75"/>
   <project remote="freescale" name="meta-fsl-demos" path="sources/meta-fsl-demos" revision="836bdf5a9d500ed258f1ddc07d89eca74a704098"/>
 
   <project remote="fsl-release" name="meta-fsl-bsp-release" path="sources/meta-fsl-bsp-release" revision="fido_3.14.38_6UL_ga" >
 	<copyfile dest="README" src="imx/README"/>
 	<copyfile dest="fsl-setup-release.sh" src="imx/tools/fsl-setup-release.sh"/>
   </project>
+
+  <project remote="lpn-cl" name="meta-cl-arm-extra" path="sources/meta-cl-arm-extra" revision="f8d682d0b116938c1d3ac7891525fd2bb5585152"/>
 
   <project remote="lpn" name="lpn-central-bsp-platform" path="platform/base" revision="fsl-release/imx-3.14.38-6UL_ga"/>
   <project remote="lpn" name="lpn-central-bsp-base" path="sources/base" revision="fsl-release/fido">
