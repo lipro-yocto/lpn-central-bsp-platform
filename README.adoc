@@ -9,11 +9,12 @@ To get the BSP you need to have `repo` installed and use it as:
 Install the `repo` utility:
 
 [source,console]
-$: mkdir ~/bin
-$: curl https://raw.githubusercontent.com/lipro-yocto/git-repo/lpn-launcher/repo > ~/bin/repo
-$: chmod a+x ~/bin/repo
+$: mkdir -p ~/.local/bin
+$: curl https://raw.githubusercontent.com/lipro-yocto/git-repo/lpn-launcher/repo > ~/.local/bin/repo
+$: chmod a+x ~/.local/bin/repo
 
-For *version 2.0*, the SHA-1 checksum for `repo` is *1b4bc3c1093cd47bc9d24528cc05833e1296ae45*
+For *repo launcher version 2.8.2020.10.4*, the SHA-1 checksum
+for `repo` is *1c5afd4164e7b9dd7939334291ededc54ef280f2*
 
 === Freescale Community Yocto BSP
 
@@ -26,7 +27,7 @@ Do not ask on any mailing list.
 Download the BSP source:
 
 [source,console]
-$: PATH=${PATH}:~/bin
+$: PATH=${PATH}:~/.local/bin
 $: mkdir lpn-central-bsp
 $: cd lpn-central-bsp
 $: repo init -u https://github.com/lipro-yocto/lpn-central-bsp-platform \
@@ -40,7 +41,7 @@ At the end of the commands you have every metadata you need to start work with.
 Download the BSP source:
 
 [source,console]
-$: PATH=${PATH}:~/bin
+$: PATH=${PATH}:~/.local/bin
 $: mkdir lpn-central-bsp
 $: cd lpn-central-bsp
 $: repo init -u https://github.com/lipro-yocto/lpn-central-bsp-platform \
